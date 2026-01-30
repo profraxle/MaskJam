@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool grounded;
     
-    [Header("Inpit Actions")]
+    [Header("Input Actions")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
     public InputActionReference lookAction;
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         // Jump
         if (jumpAction.action.triggered && grounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+            Jump();
         }
 
         // Apply gravity
@@ -82,5 +82,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(finalMove * Time.deltaTime);
         
     }
+
+    void Jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+    }
+    
 }
 
