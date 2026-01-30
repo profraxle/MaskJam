@@ -19,16 +19,16 @@ public class CCTVView : MonoBehaviour
 
         if(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
         {
-            print("In view!");
+            Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
         }
     }
 
     void OnDrawGizmosSelected()
     {
-        Quaternion leftRayRotation = Quaternion.AngleAxis(-ViewAngle, Vector3.up);
-        Quaternion rightRayRotation = Quaternion.AngleAxis(ViewAngle, Vector3.up);
-        Quaternion upRayRotation = Quaternion.AngleAxis(ViewAngle, Vector3.right);
-        Quaternion downRayRotation = Quaternion.AngleAxis(-ViewAngle, Vector3.right);
+        Quaternion leftRayRotation = Quaternion.AngleAxis(-ViewAngle, transform.up);
+        Quaternion rightRayRotation = Quaternion.AngleAxis(ViewAngle, transform.up);
+        Quaternion upRayRotation = Quaternion.AngleAxis(ViewAngle, transform.right);
+        Quaternion downRayRotation = Quaternion.AngleAxis(-ViewAngle, transform.right);
         Gizmos.DrawRay(transform.position, leftRayRotation * transform.forward * ViewRange);
         Gizmos.DrawRay(transform.position, rightRayRotation * transform.forward * ViewRange);
         Gizmos.DrawRay(transform.position, upRayRotation * transform.forward * ViewRange);
