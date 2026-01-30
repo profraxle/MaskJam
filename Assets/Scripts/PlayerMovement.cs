@@ -18,10 +18,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Inpit Actions")]
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
+    public InputActionReference lookAction;
+ 
+    private float pitch =0f;
+    [SerializeField] private Transform localCamera;
     
     private void Awake()
     {
         controller = gameObject.AddComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
@@ -36,8 +41,21 @@ public class PlayerMovement : MonoBehaviour
         jumpAction.action.Disable();
     }
 
+    void ProcessLook()
+    {
+        var lookInput = lookAction.action.ReadValue<Vector2>();
+        
+        pitch += lookInput.y * -1f;
+        pitch = Mathf.Clamp(pitch, -90, 90);
+
+        localCamera.localRotation = Quaternion.Euler(pitch, 0, 0);
+        transform.Rotate(0, lookInput.x * 1f, 0);
+    }
+    
     void Update()
     {
+
+        ProcessLook();
         grounded = controller.isGrounded;
         if (grounded && velocity.y < 0)
         {
@@ -45,10 +63,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Read input
-        Vector2 input = moveAction.action.ReadValue<Vector2>();
-        Vector3 move = new Vector3(input.x, 0, input.y);
+        Vector2 input = moveAction.action.ReadValue<Vector2>() ;
+        Vector3 move = input.y * transform.forward + input.x * transform.right;
         move = Vector3.ClampMagnitude(move, 1f);
-
 
 
         // Jump
@@ -61,8 +78,9 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravityValue * Time.deltaTime;
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = (move * moveSpeed) + (velocity.y * Vector3.up);
+        Vector3 finalMove = ((move * moveSpeed)) + (velocity.y * Vector3.up);
         controller.Move(finalMove * Time.deltaTime);
+        
     }
 }
 
