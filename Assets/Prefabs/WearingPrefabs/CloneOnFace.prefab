@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,7 +67,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8b29aaa3eec7468097ff07adfcf29ac9, type: 2}
+      objectReference: {fileID: 2100000, guid: 19c06bdefde0ed04aae51cd4527f9078, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 5a192549996152c4b971184fe80928cb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5495902117074765545, guid: dae8a1aebb232ff4b9358a519d4226e5, type: 3}
     - target: {fileID: 919132149155446097, guid: 5a192549996152c4b971184fe80928cb, type: 3}
       propertyPath: m_Name
       value: CloneOnFace
