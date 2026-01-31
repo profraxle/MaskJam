@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,13 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 100f;
     [SerializeField]
     private float jumpHeight = 1.5f;
-    [SerializeField]
-    private float gravityValue = -9.81f;
 
-    private CharacterController controller;
+    private Rigidbody rb;
     private Vector3 velocity;
     private bool grounded;
     
@@ -22,11 +21,13 @@ public class PlayerMovement : MonoBehaviour
  
     private float pitch =0f;
     [SerializeField] private Transform localCamera;
+
+    private Vector3 finalMove;
     
     private void Awake()
     {
-        controller = gameObject.AddComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -56,11 +57,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         ProcessLook();
-        grounded = controller.isGrounded;
-        if (grounded && velocity.y < 0)
-        {
-            velocity.y = 0f;
-        }
 
         // Read input
         Vector2 input = moveAction.action.ReadValue<Vector2>() ;
@@ -73,19 +69,28 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
-        // Apply gravity
-        velocity.y += gravityValue * Time.deltaTime;
+        
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = ((move * moveSpeed)) + (velocity.y * Vector3.up);
-        controller.Move(finalMove * Time.deltaTime);
-        
+        finalMove = ((move * moveSpeed));
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer(finalMove);
     }
 
     void Jump()
     {
-        velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+    }
+
+    void MovePlayer(Vector3 move)
+    {
+        Vector3 newVelocity = new Vector3(move.x* Time.fixedDeltaTime, rb.linearVelocity.y, move.z* Time.fixedDeltaTime) ;
+        rb.linearVelocity = newVelocity;
+        
     }
     
 }

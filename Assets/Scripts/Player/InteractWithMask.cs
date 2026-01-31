@@ -39,9 +39,14 @@ public class InteractWithMask : MonoBehaviour
                 
                 if (hitMaskData != null)
                 {
+                    if (GetComponent<Mask>())
+                    {
+                        DropMask();
+                    }
                     gameObject.AddComponent(hitMaskData.GetType());
-                    GetComponent<Mask>().wearPrefab = hitMaskData.wearPrefab;
-                    GetComponent<Mask>().dropPrefab = hitMaskData.dropPrefab;
+                    Mask newMask = GetComponent<Mask>();
+                    newMask.wearPrefab = hitMaskData.wearPrefab;
+                    newMask.dropPrefab = hitMaskData.dropPrefab;
                     
                     if (gameObject.GetComponent<WearMaskManager>())
                     {
@@ -63,8 +68,12 @@ public class InteractWithMask : MonoBehaviour
 
     void DropMask()
     {
-        Instantiate(gameObject.GetComponent<Mask>().dropPrefab,localCamera.position+localCamera.forward*0.1f,Quaternion.identity);
-        gameObject.GetComponent<WearMaskManager>().RemoveWearMask();
-        Destroy(gameObject.GetComponent<Mask>());
+        if (GetComponent<Mask>())
+        {
+            Instantiate(gameObject.GetComponent<Mask>().dropPrefab, localCamera.position + localCamera.forward * 0.5f,
+                Quaternion.identity);
+            gameObject.GetComponent<WearMaskManager>().RemoveWearMask();
+            Destroy(gameObject.GetComponent<Mask>());
+        }
     }
 }

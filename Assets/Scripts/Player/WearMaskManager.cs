@@ -27,6 +27,7 @@ public class WearMaskManager : MonoBehaviour
         else
         {
             Destroy(maskModel);
+            maskModel = Instantiate(maskPrefab, maskSlot.transform);
         }
     }
 
