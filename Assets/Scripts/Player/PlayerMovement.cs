@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform localCamera;
 
     private Vector3 finalMove;
+
+    [SerializeField]
+    private Animator animController;
     
     private void Awake()
     {
@@ -102,7 +106,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Combine horizontal and vertical movement
         finalMove = ((move * moveSpeed));
-
+        Vector3 moveVel = rb.linearVelocity;
+        moveVel.y = 0;
+        if (moveVel.magnitude> 0f)
+        {
+            animController.SetBool("walking", true);
+        }
+        else
+        {
+            animController.SetBool("walking", false);
+        }
 
     }
 
