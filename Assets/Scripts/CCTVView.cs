@@ -25,15 +25,20 @@ public class CCTVView : MonoBehaviour
         Vector3 VectorToPlayer = Player.transform.position - transform.position;
         float AngleToPlayer = Vector3.Angle(transform.forward, VectorToPlayer);
 
-        if (!PlayerInView && AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
+        if(!PlayerInView)
         {
-            PlayerInView = true;
-            Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
+            if (Player.GetComponent<Mask>() == null && AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
+            {
+                PlayerInView = true;
+                Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
+            }
         }
-        else if (PlayerInView && !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange))
+        else
         {
-            PlayerInView = false;
-            Player.GetComponent<PlayerDeathScript>().OnPlayerLeftCCTV();
+            if (Player.GetComponent<Mask>() != null || !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)) {
+                PlayerInView = false;
+                Player.GetComponent<PlayerDeathScript>().OnPlayerLeftCCTV();
+            }
         }
         
     }
