@@ -32,12 +32,39 @@ public class InteractWithMask : MonoBehaviour
             print("pressed");
             Physics.Raycast(localCamera.position,localCamera.forward,out RaycastHit hit,pickupDistance);
             
-            if (hit.collider != null){
-                if (hit.collider.gameObject.GetComponent<Mask>())
+            if (hit.collider != null)
+            {
+
+                Mask hitMaskData = hit.collider.gameObject.GetComponent<Mask>();
+                
+                if (hitMaskData != null)
                 {
-                    gameObject.AddComponent(hit.collider.gameObject.GetComponent<Mask>().GetType());
+                    gameObject.AddComponent(hitMaskData.GetType());
+                    GetComponent<Mask>().wearPrefab = hitMaskData.wearPrefab;
+                    GetComponent<Mask>().dropPrefab = hitMaskData.dropPrefab;
+                    
+                    if (gameObject.GetComponent<WearMaskManager>())
+                    {
+                        gameObject.GetComponent<WearMaskManager>().AddWearMask(hitMaskData.wearPrefab);  
+                    }
+                    Destroy(hitMaskData.gameObject);
+                }
+                else
+                {
+                    DropMask();
                 }
             }
+            else
+            {
+                DropMask();
+            }
         }
+    }
+
+    void DropMask()
+    {
+        Instantiate(gameObject.GetComponent<Mask>().dropPrefab,localCamera.position+localCamera.forward*0.1f,Quaternion.identity);
+        gameObject.GetComponent<WearMaskManager>().RemoveWearMask();
+        Destroy(gameObject.GetComponent<Mask>());
     }
 }
