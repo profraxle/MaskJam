@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float teleportMaxRange = 10f;
+
+    [SerializeField]
+    private float punchRange = 5f;
     
     [SerializeField]
     private GroundCheck groundCheck;
@@ -110,6 +113,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ClonePlayer();
         }
+
+		// Punch
+		if (punchAction.action.triggered)
+		{
+			Punch();
+		}
         
 
         // Combine horizontal and vertical movement
@@ -186,5 +195,18 @@ public class PlayerMovement : MonoBehaviour
             Destroy(playerMask);
         }
     }
+
+	void Punch()
+	{
+        Physics.Raycast(localCamera.position, localCamera.forward, out RaycastHit hit, punchRange);
+        if (hit.collider != null)
+        {
+            Punchable punchedObject = hit.collider.gameObject.GetComponent<Punchable>();
+            if (punchedObject)
+            {
+                punchedObject.Punch();
+            }
+        }
+	}
 }
 
