@@ -45,11 +45,19 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Animator animController;
-    
+
+    [SerializeField]
+    RectTransform PauseMenuPanel;
+    PauseMenuScript PauseMenu;
+
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        PauseMenu = PauseMenuPanel.GetComponent<PauseMenuScript>();
     }
 
     private void OnEnable()
@@ -77,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        if (PauseMenu.Paused) return;
 
         ProcessLook();
 
