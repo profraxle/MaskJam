@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 6189527397807681555}
   - component: {fileID: 8399977447107794646}
   - component: {fileID: 5316906090419998633}
+  - component: {fileID: 3435867063730164062}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1443660041075955800}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.25972, y: 1.04, z: 3.8046}
+  m_LocalPosition: {x: 496, y: 280.133, z: 3.8046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -143,8 +144,8 @@ MonoBehaviour:
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   sprintAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  teleportAction: {fileID: -5712851179645860007, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   punchAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  maskEffectAction: {fileID: 0}
   localCamera: {fileID: 8747696899336753031}
   animController: {fileID: 1574857731290362850}
 --- !u!114 &6189527397807681555
@@ -202,6 +203,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3435867063730164062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443660041075955800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84931d7898ee27c408ec268f150b0101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathScript
+  DeathCountdownTime: 2
+  FadeOutTime: 0.2
+  DeathScreenPanel: {fileID: 0}
 --- !u!1 &2800127154447531876
 GameObject:
   m_ObjectHideFlags: 0

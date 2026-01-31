@@ -1,15 +1,23 @@
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class CCTVView : MonoBehaviour
 {
-    [SerializeField]
     GameObject Player;
-
     [SerializeField]
     float ViewAngle = 30;
-
     [SerializeField]
     float ViewRange = 15;
+    bool PlayerInView = false;
+
+    private void Start()
+    {
+        Player = GameObject.FindWithTag("Player");
+
+        Light Spotlight = GetComponentInChildren<Light>();
+        Spotlight.spotAngle = 2 * ViewAngle;
+        Spotlight.innerSpotAngle = 1.9f * ViewAngle;
+    }
 
     // Update is called once per frame
     void Update()
@@ -17,10 +25,17 @@ public class CCTVView : MonoBehaviour
         Vector3 VectorToPlayer = Player.transform.position - transform.position;
         float AngleToPlayer = Vector3.Angle(transform.forward, VectorToPlayer);
 
-        if(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
+        if (!PlayerInView && AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
         {
+            PlayerInView = true;
             Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
         }
+        else if (PlayerInView && !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange))
+        {
+            PlayerInView = false;
+            Player.GetComponent<PlayerDeathScript>().OnPlayerLeftCCTV();
+        }
+        
     }
 
     void OnDrawGizmosSelected()
