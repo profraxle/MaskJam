@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference jumpAction;
     public InputActionReference lookAction;
 	public InputActionReference sprintAction;
-    public InputActionReference teleportAction;
+    public InputActionReference maskEffectAction;
  
     private float pitch =0f;
     [SerializeField] private Transform localCamera;
@@ -94,9 +94,14 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // Teleport
-        if (teleportAction.action.triggered && GetComponent<TeleportMask>())
+        if (maskEffectAction.action.triggered && GetComponent<TeleportMask>())
         {
             TeleportPlayer();
+        }
+
+        if (maskEffectAction.action.triggered && GetComponent<CloneMask>())
+        {
+            ClonePlayer();
         }
         
 
@@ -142,6 +147,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 gameObject.transform.position = hit.point;
             }
+        }
+    }
+
+    void ClonePlayer()
+    {
+        CloneMask cloneMask = GetComponent<CloneMask>();
+        if (cloneMask)
+        {
+            GameObject clone = Instantiate(cloneMask.clonePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            clone.AddComponent(cloneMask.GetType());
+            Mask newMask = clone.GetComponent<Mask>();
+            Mask playerMask = gameObject.GetComponent<Mask>();
+            newMask.wearPrefab = playerMask.wearPrefab;
+            clone.GetComponent<WearMaskManager>().AddWearMask(cloneMask.wearPrefab);
+            gameObject.GetComponent<WearMaskManager>().RemoveWearMask();
+            Destroy(playerMask);
         }
     }
 }
