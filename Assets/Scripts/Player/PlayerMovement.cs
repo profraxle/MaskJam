@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 100f;
     [SerializeField]
     private float jumpHeight = 1.5f;
+    
+    [SerializeField]
+    private GroundCheck groundCheck;
 
     private Rigidbody rb;
     private Vector3 velocity;
@@ -65,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Jump
-        if (jumpAction.action.triggered && grounded)
+        if (jumpAction.action.triggered && groundCheck.isGround)
         {
             Jump();
         }
@@ -84,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
     }
 
     void MovePlayer(Vector3 move)
