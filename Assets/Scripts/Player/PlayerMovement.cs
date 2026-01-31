@@ -7,8 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 100f;
+	[SerializeField]
+    private float sprintSpeedMult = 2f;
     [SerializeField]
     private float jumpHeight = 1.5f;
+    [SerializeField]
+    private float doubleJumpHeight = 1.5f;
     
     [SerializeField]
     private GroundCheck groundCheck;
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference jumpAction;
     public InputActionReference lookAction;
+	public InputActionReference sprintAction;
  
     private float pitch =0f;
     [SerializeField] private Transform localCamera;
@@ -68,9 +73,20 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Jump
-        if (jumpAction.action.triggered && groundCheck.isGround)
+        if (jumpAction.action.triggered)
         {
-            Jump();
+			DoubleJumpMask doubleJumpMask = GetComponent<DoubleJumpMask>();
+			if (groundCheck.isGround) {
+            	Jump();
+				if (doubleJumpMask) {
+					doubleJumpMask.canDoubleJump = true;
+				}
+			} else if (doubleJumpMask) {
+				if (doubleJumpMask.canDoubleJump) {
+					DoubleJump();
+					doubleJumpMask.canDoubleJump = false;
+				}
+			}
         }
         
 
@@ -90,9 +106,18 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
     }
 
+    void DoubleJump()
+    {
+        rb.AddForce(transform.up * doubleJumpHeight, ForceMode.Impulse);
+    }
+
     void MovePlayer(Vector3 move)
     {
-        Vector3 newVelocity = new Vector3(move.x* Time.fixedDeltaTime, rb.linearVelocity.y, move.z* Time.fixedDeltaTime) ;
+		bool applySprint = false;
+		if (GetComponent<SprintMask>() && (sprintAction.action.ReadValue<float>() != 0)) {
+			applySprint = true;
+		}
+        Vector3 newVelocity = new Vector3(move.x* Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1), rb.linearVelocity.y, move.z* Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1)) ;
         rb.linearVelocity = newVelocity;
         
     }
