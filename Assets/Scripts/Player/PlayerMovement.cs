@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private float jumpHeight = 1.5f;
     [SerializeField]
     private float doubleJumpHeight = 1.5f;
+
+    [SerializeField]
+    private float teleportMaxRange = 10f;
     
     [SerializeField]
     private GroundCheck groundCheck;
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference jumpAction;
     public InputActionReference lookAction;
 	public InputActionReference sprintAction;
+    public InputActionReference teleportAction;
  
     private float pitch =0f;
     [SerializeField] private Transform localCamera;
@@ -89,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
 			}
         }
         
+        // Teleport
+        if (teleportAction.action.triggered && GetComponent<TeleportMask>())
+        {
+            TeleportPlayer();
+        }
+        
 
         // Combine horizontal and vertical movement
         finalMove = ((move * moveSpeed));
@@ -121,6 +131,14 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = newVelocity;
         
     }
-    
+
+    void TeleportPlayer()
+    {
+        Physics.Raycast(localCamera.position,localCamera.forward,out RaycastHit hit,teleportMaxRange);
+
+        if (hit.collider != null)
+        {
+        }
+    }
 }
 
