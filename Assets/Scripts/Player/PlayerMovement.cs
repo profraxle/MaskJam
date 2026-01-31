@@ -212,7 +212,14 @@ public class PlayerMovement : MonoBehaviour
             Punchable punchedObject = hit.collider.gameObject.GetComponent<Punchable>();
             if (punchedObject)
             {
-                punchedObject.Punch();
+				if (!punchedObject.requirePunchMask) {
+                	punchedObject.Punch();
+				} else {
+					Mask punchMask = GetComponent<PunchMask>();
+					if (punchMask) {
+						punchedObject.Punch();
+					}
+				}
             }
         }
 	}
