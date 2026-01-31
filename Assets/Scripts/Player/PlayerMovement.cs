@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference lookAction;
 	public InputActionReference sprintAction;
     public InputActionReference teleportAction;
+    public InputActionReference punchAction;
  
     private float pitch =0f;
     [SerializeField] private Transform localCamera;
@@ -117,6 +118,11 @@ public class PlayerMovement : MonoBehaviour
             animController.SetBool("walking", false);
         }
 
+        if (punchAction.action.triggered)
+        {
+            animController.SetTrigger("punch");
+        }
+        
     }
 
     private void FixedUpdate()
