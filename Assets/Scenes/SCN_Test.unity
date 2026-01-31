@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &49212268
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3090433568011165272, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_Name
+      value: PunchDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.747569
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.12341297
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.4373736
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499414858552728348, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f63a2840246f1d04ebdf9f22cde00958, type: 3}
 --- !u!1001 &53892111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,6 +356,14 @@ PrefabInstance:
     - target: {fileID: 1466502323987461109, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
       propertyPath: m_Name
       value: CCTVCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036850755799958806, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
+      propertyPath: m_SpotAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036850755799958806, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 6655560556377744653, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
       propertyPath: m_LocalScale.x
@@ -486,6 +551,7 @@ GameObject:
   - component: {fileID: 259788941}
   - component: {fileID: 259788940}
   - component: {fileID: 259788939}
+  - component: {fileID: 259788943}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -586,6 +652,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259788943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259788938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8187870170b8024ead73099c782ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Punchable
+  onPunch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 259788938}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  requirePunchMask: 1
 --- !u!1001 &260109066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -710,7 +804,7 @@ PrefabInstance:
     - target: {fileID: 7176294092667715516, guid: e88264dd7434c2341a6af7255cd37a74, type: 3}
       propertyPath: onActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 785699873}
+      objectReference: {fileID: 0}
     - target: {fileID: 7176294092667715516, guid: e88264dd7434c2341a6af7255cd37a74, type: 3}
       propertyPath: onDeactivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -722,11 +816,11 @@ PrefabInstance:
     - target: {fileID: 7176294092667715516, guid: e88264dd7434c2341a6af7255cd37a74, type: 3}
       propertyPath: onDeactivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 785699873}
+      objectReference: {fileID: 0}
     - target: {fileID: 7176294092667715516, guid: e88264dd7434c2341a6af7255cd37a74, type: 3}
       propertyPath: onDeactivated.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 785699873}
+      objectReference: {fileID: 0}
     - target: {fileID: 7176294092667715516, guid: e88264dd7434c2341a6af7255cd37a74, type: 3}
       propertyPath: onActivated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1227,6 +1321,7 @@ GameObject:
   - component: {fileID: 1386320101}
   - component: {fileID: 1386320100}
   - component: {fileID: 1386320099}
+  - component: {fileID: 1386320103}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1327,6 +1422,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1386320103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386320098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8187870170b8024ead73099c782ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Punchable
+  onPunch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1386320098}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  requirePunchMask: 0
 --- !u!1001 &1408556775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1700,4 +1823,4 @@ SceneRoots:
   - {fileID: 485050062}
   - {fileID: 79144503}
   - {fileID: 160252318}
-  - {fileID: 1182861797}
+  - {fileID: 49212268}
