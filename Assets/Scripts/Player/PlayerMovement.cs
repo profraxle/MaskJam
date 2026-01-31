@@ -181,7 +181,6 @@ public class PlayerMovement : MonoBehaviour
             Mask newMask = clone.GetComponent<Mask>();
             Mask playerMask = gameObject.GetComponent<Mask>();
             newMask.wearPrefab = playerMask.wearPrefab;
-            clone.GetComponent<WearMaskManager>().AddWearMask(cloneMask.wearPrefab);
             gameObject.GetComponent<WearMaskManager>().RemoveWearMask();
             Destroy(playerMask);
         }

@@ -35,7 +35,8 @@ public class InteractWithMask : MonoBehaviour
             if (hit.collider != null)
             {
 
-                Mask hitMaskData = hit.collider.gameObject.GetComponent<Mask>();
+                Mask hitMaskData = hit.collider.gameObject.GetComponentInParent<Mask>();
+                
                 
                 if (hitMaskData != null)
                 {
@@ -76,4 +77,5 @@ public class InteractWithMask : MonoBehaviour
             Destroy(gameObject.GetComponent<Mask>());
         }
     }
+    
 }
