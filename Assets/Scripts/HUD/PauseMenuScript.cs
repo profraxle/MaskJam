@@ -51,6 +51,9 @@ public class PauseMenuScript : MonoBehaviour
     public void OnRestartClicked()
     {
         SceneManager.LoadScene(SceneToRestart);
+        GetComponent<CanvasGroup>().alpha = 0;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
     }
 
     public void OnMainMenuClicked()
