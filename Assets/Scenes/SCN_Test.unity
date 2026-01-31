@@ -903,6 +903,10 @@ PrefabInstance:
       propertyPath: sprintAction
       value: 
       objectReference: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 8986713601329526623, guid: 419a05d223b0fa04295dc3f3427a4e2d, type: 3}
+      propertyPath: teleportAction
+      value: 
+      objectReference: {fileID: -5712851179645860007, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
