@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed = 100f;
     [SerializeField]
     private float jumpHeight = 1.5f;
+    [SerializeField]
+    private float doubleJumpHeight = 1.5f;
     
     [SerializeField]
     private GroundCheck groundCheck;
@@ -68,9 +70,20 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Jump
-        if (jumpAction.action.triggered && groundCheck.isGround)
+        if (jumpAction.action.triggered)
         {
-            Jump();
+			DoubleJumpMask doubleJumpMask = GetComponent<DoubleJumpMask>();
+			if (groundCheck.isGround) {
+            	Jump();
+				if (doubleJumpMask) {
+					doubleJumpMask.canDoubleJump = true;
+				}
+			} else if (doubleJumpMask) {
+				if (doubleJumpMask.canDoubleJump) {
+					DoubleJump();
+					doubleJumpMask.canDoubleJump = false;
+				}
+			}
         }
         
 
@@ -88,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+    }
+
+    void DoubleJump()
+    {
+        rb.AddForce(transform.up * doubleJumpHeight, ForceMode.Impulse);
     }
 
     void MovePlayer(Vector3 move)

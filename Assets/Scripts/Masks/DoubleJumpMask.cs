@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DoubleJumpMask :Mask
 {
+    [SerializeField] public bool canDoubleJump;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
