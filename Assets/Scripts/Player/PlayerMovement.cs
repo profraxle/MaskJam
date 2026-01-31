@@ -138,6 +138,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (hit.collider != null)
         {
+            if (hit.collider.gameObject.tag == "Ground")
+            {
+                gameObject.transform.position = hit.point;
+            }
         }
     }
 }
