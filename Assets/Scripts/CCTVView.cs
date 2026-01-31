@@ -13,7 +13,10 @@ public class CCTVView : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
+    }
 
+    private void OnValidate()
+    {
         Light Spotlight = GetComponentInChildren<Light>();
         Spotlight.spotAngle = 2 * ViewAngle;
         Spotlight.innerSpotAngle = 1.9f * ViewAngle;
