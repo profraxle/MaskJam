@@ -870,6 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8125387761427265420}
   - component: {fileID: -8982075568363407066}
+  - component: {fileID: -5142194907082863728}
   m_Layer: 0
   m_Name: PlayerClone
   m_TagString: Untagged
@@ -920,6 +921,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5142194907082863728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843318632016580993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77cac70e2b56ed54cb0e2a61c50d7f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Clone
+  rb: {fileID: 3593816028425103194}
+  launchForce: 500
 --- !u!1 &4250690177981720742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1717,7 @@ GameObject:
   - component: {fileID: 5394594884609113009}
   - component: {fileID: 6996005237974127384}
   - component: {fileID: 3593816028425103194}
+  - component: {fileID: 2947328737963297020}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -1775,6 +1791,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2947328737963297020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107207868089726293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8187870170b8024ead73099c782ae56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Punchable
+  onPunch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5142194907082863728}
+        m_TargetAssemblyTypeName: Clone, Assembly-CSharp
+        m_MethodName: PunchCallback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6408773566629077650
 GameObject:
   m_ObjectHideFlags: 0

@@ -1314,6 +1314,10 @@ PrefabInstance:
       value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8986713601329526623, guid: 419a05d223b0fa04295dc3f3427a4e2d, type: 3}
+      propertyPath: punchRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986713601329526623, guid: 419a05d223b0fa04295dc3f3427a4e2d, type: 3}
       propertyPath: punchAction
       value: 
       objectReference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
