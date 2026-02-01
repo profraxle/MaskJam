@@ -17,7 +17,7 @@ public class Punchable : MonoBehaviour
         
     }
 
-    public void Punch()
+   public void Punch()
     {
         onPunch.Invoke();
     }

@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
 		if (punchAction.action.triggered)
 		{
 			Punch();
+            animController.SetTrigger("punch");
 		}
         
 
@@ -142,11 +143,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animController.SetBool("walking", false);
         }
-
-        if (punchAction.action.triggered)
-        {
-            animController.SetTrigger("punch");
-        }
+        
         
     }
 
