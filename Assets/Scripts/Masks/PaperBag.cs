@@ -6,7 +6,7 @@ public class PaperBag : Mask
     void Start()
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/PaperBagDrop");
-        customControlTooltip = "";
+        customControlTooltip = "Right Click: Rustle Bag";
     }
 
     // Update is called once per frame

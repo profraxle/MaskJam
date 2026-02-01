@@ -122,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ClonePlayer();
         }
+        
+        // Rustle Bag
+        if (maskEffectAction.action.triggered && GetComponent<PaperBag>())
+        {
+	        RustleBag();
+        }
 
 		// Punch
 		if (punchAction.action.triggered)
@@ -181,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Ground")
             {
-                gameObject.transform.position = hit.point;
+                gameObject.transform.position = hit.point + transform.up;
             } else {
 				Vector3 raycastEndLocation = hit.point + transform.up;
 			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
@@ -189,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
-					gameObject.transform.position = downHit.point - localCamera.forward;
+					gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
 				}
 			}
 			}
@@ -200,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
-					gameObject.transform.position = downHit.point;
+					gameObject.transform.position = downHit.point + transform.up;
 				}
 			}
 		}
@@ -239,6 +245,11 @@ public class PlayerMovement : MonoBehaviour
 				}
             }
         }
+	}
+
+	void RustleBag()
+	{
+		print("Rustle rustle");
 	}
 }
 
