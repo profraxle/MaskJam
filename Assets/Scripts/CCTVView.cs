@@ -20,6 +20,7 @@ public class CCTVView : MonoBehaviour
         Light Spotlight = GetComponentInChildren<Light>();
         Spotlight.spotAngle = 2 * ViewAngle;
         Spotlight.innerSpotAngle = 1.9f * ViewAngle;
+        Spotlight.range = ViewRange;
     }
 
     // Update is called once per frame
