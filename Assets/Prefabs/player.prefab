@@ -138,7 +138,7 @@ MonoBehaviour:
   moveSpeed: 200
   sprintSpeedMult: 3
   jumpHeight: 5
-  doubleJumpHeight: 5
+  doubleJumpHeight: 10
   teleportMaxRange: 10
   punchRange: 5
   groundCheck: {fileID: 5631847545228464055}
@@ -150,6 +150,7 @@ MonoBehaviour:
   maskEffectAction: {fileID: 0}
   localCamera: {fileID: 8747696899336753031}
   animController: {fileID: 1574857731290362850}
+  PauseMenuPanel: {fileID: 0}
 --- !u!114 &6189527397807681555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ Transform:
   m_GameObject: {fileID: 2800127154447531876}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1.075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
