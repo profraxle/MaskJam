@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     GameObject TeleportAudioSource;
     [SerializeField]
     GameObject JumpAudioSource;
+    [SerializeField]
+    GameObject RustleAudioSource;
 
 
     private void Awake()
@@ -283,7 +285,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void RustleBag()
 	{
-		print("Rustle rustle");
-	}
+        RustleAudioSource.GetComponent<AudioSource>().Play();
+    }
 }
 
