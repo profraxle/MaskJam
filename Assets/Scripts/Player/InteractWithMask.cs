@@ -11,6 +11,9 @@ public class InteractWithMask : MonoBehaviour
     [SerializeField] private float pickupDistance = 1.5f;
     
     [SerializeField] private Transform localCamera;
+
+    [SerializeField]
+    GameObject AudioSource;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -54,6 +57,7 @@ public class InteractWithMask : MonoBehaviour
                         gameObject.GetComponent<WearMaskManager>().AddWearMask(hitMaskData.wearPrefab);  
                     }
                     Destroy(hitMaskData.gameObject);
+                    AudioSource.GetComponent<AudioSource>().Play();
                 }
                 else
                 {

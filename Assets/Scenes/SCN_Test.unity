@@ -385,6 +385,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CCTVCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3361745135483975219, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
+      propertyPath: ViewRange
+      value: 10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036850755799958806, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
+      propertyPath: m_Range
+      value: 10.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5036850755799958806, guid: c4399a70d0b82d34cbbdf8fcd0d377f3, type: 3}
       propertyPath: m_SpotAngle
       value: 60
@@ -1729,7 +1737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1244431853812791450, guid: 419a05d223b0fa04295dc3f3427a4e2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0.965
       objectReference: {fileID: 0}
     - target: {fileID: 1244431853812791450, guid: 419a05d223b0fa04295dc3f3427a4e2d, type: 3}
       propertyPath: m_LocalRotation.w

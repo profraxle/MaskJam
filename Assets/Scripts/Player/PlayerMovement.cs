@@ -50,6 +50,18 @@ public class PlayerMovement : MonoBehaviour
     RectTransform PauseMenuPanel;
     PauseMenuScript PauseMenu;
 
+    [SerializeField]
+    GameObject PunchAudioSource;
+    [SerializeField]
+    GameObject SprintAudioSource;
+    [SerializeField]
+    GameObject CloneAudioSource;
+    [SerializeField]
+    GameObject TeleportAudioSource;
+    [SerializeField]
+    GameObject JumpAudioSource;
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -100,13 +112,15 @@ public class PlayerMovement : MonoBehaviour
         {
 			DoubleJumpMask doubleJumpMask = GetComponent<DoubleJumpMask>();
 			if (groundCheck.isGround) {
-            	Jump();
+                JumpAudioSource.GetComponent<AudioSource>().Play();
+                Jump();
 				if (doubleJumpMask) {
 					doubleJumpMask.canDoubleJump = true;
 				}
 			} else if (doubleJumpMask) {
 				if (doubleJumpMask.canDoubleJump) {
-					DoubleJump();
+                    JumpAudioSource.GetComponent<AudioSource>().Play();
+                    DoubleJump();
 					doubleJumpMask.canDoubleJump = false;
 				}
 			}
@@ -116,11 +130,13 @@ public class PlayerMovement : MonoBehaviour
         if (maskEffectAction.action.triggered && GetComponent<TeleportMask>())
         {
             TeleportPlayer();
+        
         }
 
         if (maskEffectAction.action.triggered && GetComponent<CloneMask>())
         {
             ClonePlayer();
+            
         }
         
         // Rustle Bag
@@ -134,7 +150,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			Punch();
             animController.SetTrigger("punch");
-		}
+            PunchAudioSource.GetComponent<AudioSource>().Play();
+        }
         
 
         // Combine horizontal and vertical movement
@@ -173,8 +190,18 @@ public class PlayerMovement : MonoBehaviour
 		bool applySprint = false;
 		if (GetComponent<SprintMask>() && (sprintAction.action.ReadValue<float>() != 0)) {
 			applySprint = true;
+            if (!SprintAudioSource.GetComponent<AudioSource>().isPlaying) {
+                SprintAudioSource.GetComponent<AudioSource>().Play();
+            }
 		}
-        Vector3 newVelocity = new Vector3(move.x* Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1), rb.linearVelocity.y, move.z* Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1)) ;
+        else
+        {
+            if (SprintAudioSource.GetComponent<AudioSource>().isPlaying)
+            {
+                SprintAudioSource.GetComponent<AudioSource>().Stop();
+            }
+        }
+            Vector3 newVelocity = new Vector3(move.x * Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1), rb.linearVelocity.y, move.z * Time.fixedDeltaTime * (applySprint ? sprintSpeedMult : 1));
         rb.linearVelocity = newVelocity;
         
     }
@@ -187,7 +214,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Ground")
             {
+<<<<<<< Updated upstream
                 gameObject.transform.position = hit.point + transform.up;
+=======
+                gameObject.transform.position = hit.point;
+                TeleportAudioSource.GetComponent<AudioSource>().Play();
+>>>>>>> Stashed changes
             } else {
 				Vector3 raycastEndLocation = hit.point + transform.up;
 			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
@@ -195,8 +227,14 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
+<<<<<<< Updated upstream
 					gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
 				}
+=======
+					gameObject.transform.position = downHit.point - localCamera.forward;
+                    TeleportAudioSource.GetComponent<AudioSource>().Play();
+                }
+>>>>>>> Stashed changes
 			}
 			}
         } else {
@@ -206,8 +244,14 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
+<<<<<<< Updated upstream
 					gameObject.transform.position = downHit.point + transform.up;
 				}
+=======
+					gameObject.transform.position = downHit.point;
+                    TeleportAudioSource.GetComponent<AudioSource>().Play();
+                }
+>>>>>>> Stashed changes
 			}
 		}
     }
@@ -218,6 +262,7 @@ public class PlayerMovement : MonoBehaviour
         if (cloneMask)
         {
             GameObject clone = Instantiate(cloneMask.clonePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            CloneAudioSource.GetComponent<AudioSource>().Play();
             clone.AddComponent(cloneMask.GetType());
             Mask newMask = clone.GetComponent<Mask>();
             Mask playerMask = gameObject.GetComponent<Mask>();

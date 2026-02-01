@@ -7,6 +7,8 @@ public class GlassCabinet : Punchable
     
     [SerializeField]
     private GameObject deleteGlass;
+    [SerializeField]
+    private GameObject AudioSource;
 	[SerializeField]
 	private float brokenGlassDespawnTime = 10f;
 
@@ -17,7 +19,7 @@ public class GlassCabinet : Punchable
 
     public void BreakGlass()
     {
-        
+        AudioSource.GetComponent<AudioSource>().Play();
         GameObject brokenGlass = Instantiate(brokenPrefab, gameObject.transform.parent.position, Quaternion.identity);
 		Destroy(brokenGlass, brokenGlassDespawnTime);
         Destroy(deleteGlass);

@@ -8,6 +8,10 @@ public class CCTVView : MonoBehaviour
     float ViewAngle = 30;
     [SerializeField]
     float ViewRange = 15;
+    [SerializeField]
+    GameObject BeepingSource;
+    [SerializeField]
+    GameObject WhirringSource;
     bool PlayerInView = false;
 
     private void Start()
@@ -35,6 +39,8 @@ public class CCTVView : MonoBehaviour
             {
                 PlayerInView = true;
                 Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
+                BeepingSource.GetComponent<AudioSource>().Play();
+                WhirringSource.GetComponent<AudioSource>().Play();
             }
         }
         else
@@ -42,6 +48,8 @@ public class CCTVView : MonoBehaviour
             if (Player.GetComponent<Mask>() != null || !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)) {
                 PlayerInView = false;
                 Player.GetComponent<PlayerDeathScript>().OnPlayerLeftCCTV();
+                BeepingSource.GetComponent<AudioSource>().Stop();
+                WhirringSource.GetComponent<AudioSource>().Stop();
             }
         }
         
