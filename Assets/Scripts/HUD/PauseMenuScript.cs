@@ -15,7 +15,7 @@ public class PauseMenuScript : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        PauseAction.action.Enable();
+            PauseAction.action.Enable();
         GetComponent<CanvasGroup>().alpha = 0;
     }
     void TogglePause()
