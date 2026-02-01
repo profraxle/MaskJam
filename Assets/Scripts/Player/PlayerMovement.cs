@@ -154,6 +154,11 @@ public class PlayerMovement : MonoBehaviour
 	        RustleBag();
         }
 
+        if (maskEffectAction.action.triggered && GetComponent<GodMask>())
+        {
+            print("Ascend");
+        }
+
 		// Punch
 		if (punchAction.action.triggered)
 		{
