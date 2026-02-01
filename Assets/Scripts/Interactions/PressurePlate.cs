@@ -14,6 +14,9 @@ public class PressurePlate : MonoBehaviour
     [SerializeField]
     private GameObject plateMesh;
 
+    [SerializeField]
+    GameObject AudioSource;
+
     public UnityEvent onActivated = new UnityEvent();
     public UnityEvent onDeactivated = new UnityEvent();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,6 +60,7 @@ public class PressurePlate : MonoBehaviour
             if (!isActivated)
             {
                 onActivated.Invoke();
+                AudioSource.GetComponent<AudioSource>().Play();
             }
             isActivated = true;
         }
@@ -69,6 +73,7 @@ public class PressurePlate : MonoBehaviour
             if (isActivated)
             {
                 onDeactivated.Invoke();
+                AudioSource.GetComponent<AudioSource>().Play();
             }
             isActivated = false;
         }
