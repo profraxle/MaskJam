@@ -15,4 +15,9 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnMainMenuClicked()
+    {
+        SceneManager.LoadScene("SCN_MainMenu");
+    }
 }

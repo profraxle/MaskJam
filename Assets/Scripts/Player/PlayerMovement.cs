@@ -3,6 +3,7 @@ using UnityEditor.Animations;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -157,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         if (maskEffectAction.action.triggered && GetComponent<GodMask>())
         {
             print("Ascend");
+            SceneManager.LoadScene("SCN_Victory");
         }
 
 		// Punch
