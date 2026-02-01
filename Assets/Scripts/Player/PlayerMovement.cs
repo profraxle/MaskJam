@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private float punchRange = 5f;
     
     [SerializeField]
+    public float teleportRechargeTime = 10f;
+    public float teleportRechargeTimer = 0f;
+    
+    [SerializeField]
     private GroundCheck groundCheck;
 
     private Rigidbody rb;
@@ -72,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         PauseMenu = PauseMenuPanel.GetComponent<PauseMenuScript>();
+        teleportRechargeTimer = 0;
     }
 
     private void OnEnable()
@@ -103,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
         ProcessLook();
 
+        
+
         // Read input
         Vector2 input = moveAction.action.ReadValue<Vector2>() ;
         Vector3 move = input.y * transform.forward + input.x * transform.right;
@@ -129,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // Teleport
-        if (maskEffectAction.action.triggered && GetComponent<TeleportMask>())
+        if (maskEffectAction.action.triggered && GetComponent<TeleportMask>() && teleportRechargeTimer == 0)
         {
             TeleportPlayer();
         
@@ -174,7 +181,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PauseMenu.Paused) return;
         MovePlayer(finalMove);
+        if (teleportRechargeTimer > 0)
+        {
+            teleportRechargeTimer -= Time.fixedDeltaTime;
+            if (teleportRechargeTimer < 0)
+            {
+                teleportRechargeTimer = 0;
+            }
+        }
     }
 
     void Jump()
@@ -217,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Ground")
             {
                 gameObject.transform.position = hit.point + transform.up;
+                teleportRechargeTimer = teleportRechargeTime;
                 TeleportAudioSource.GetComponent<AudioSource>().Play();
             }
             else
@@ -229,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
                     if (downHit.collider.gameObject.tag == "Ground")
                     {
                         gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
+                        teleportRechargeTimer = teleportRechargeTime;
                         TeleportAudioSource.GetComponent<AudioSource>().Play();
                     }
                 }
@@ -241,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
 					gameObject.transform.position = downHit.point + transform.up;
+                    teleportRechargeTimer = teleportRechargeTime;
                     TeleportAudioSource.GetComponent<AudioSource>().Play();
                 }
 			}
