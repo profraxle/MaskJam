@@ -35,7 +35,8 @@ public class CCTVView : MonoBehaviour
 
         if(!PlayerInView)
         {
-            if (Player.GetComponent<Mask>() == null && AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)
+            Physics.Raycast(transform.position, VectorToPlayer,out RaycastHit hitInfo);
+            if (Player.GetComponent<Mask>() == null && AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange && hitInfo.collider.gameObject.CompareTag("Player"))
             {
                 PlayerInView = true;
                 Player.GetComponent<PlayerDeathScript>().OnPlayerEnteredCCTV();
@@ -45,7 +46,8 @@ public class CCTVView : MonoBehaviour
         }
         else
         {
-            if (Player.GetComponent<Mask>() != null || !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange)) {
+            Physics.Raycast(transform.position, VectorToPlayer, out RaycastHit hitInfo);
+            if (Player.GetComponent<Mask>() != null || !(AngleToPlayer <= ViewAngle && VectorToPlayer.magnitude <= ViewRange) || !hitInfo.collider.gameObject.CompareTag("Player")) {
                 PlayerInView = false;
                 Player.GetComponent<PlayerDeathScript>().OnPlayerLeftCCTV();
                 BeepingSource.GetComponent<AudioSource>().Stop();
