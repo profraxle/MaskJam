@@ -1536,7 +1536,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 825233646}
         m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: OnBeginClicked
+        m_MethodName: OnQuitClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
