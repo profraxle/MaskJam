@@ -122,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
         {
             ClonePlayer();
         }
+        
+        // Rustle Bag
+        if (maskEffectAction.action.triggered && GetComponent<PaperBag>())
+        {
+	        RustleBag();
+        }
 
 		// Punch
 		if (punchAction.action.triggered)
@@ -239,6 +245,11 @@ public class PlayerMovement : MonoBehaviour
 				}
             }
         }
+	}
+
+	void RustleBag()
+	{
+		print("Rustle rustle");
 	}
 }
 
