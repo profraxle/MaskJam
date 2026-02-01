@@ -182,8 +182,28 @@ public class PlayerMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Ground")
             {
                 gameObject.transform.position = hit.point;
-            }
-        }
+            } else {
+				Vector3 raycastEndLocation = hit.point + transform.up;
+			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
+			if (downHit.collider != null)
+			{
+				if (downHit.collider.gameObject.tag == "Ground")
+				{
+					gameObject.transform.position = downHit.point - localCamera.forward;
+				}
+			}
+			}
+        } else {
+			Vector3 raycastEndLocation = localCamera.position + localCamera.forward * teleportMaxRange;
+			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
+			if (downHit.collider != null)
+			{
+				if (downHit.collider.gameObject.tag == "Ground")
+				{
+					gameObject.transform.position = downHit.point;
+				}
+			}
+		}
     }
 
     void ClonePlayer()

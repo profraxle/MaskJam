@@ -10,7 +10,7 @@ public class ControlsHandler : MonoBehaviour
     [SerializeField]
     private Text displayText;
     private string defaultControlsText = "E: Pick Up Mask\nLeft Click: Punch";
-	private bool updateOnNext = false;
+	private int updateOnNext = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,14 +23,16 @@ public class ControlsHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (updateOnNext) {
-			updateOnNext = false;
+        if (updateOnNext == 0) {
+			updateOnNext = -1;
 			UpdateControlsOnScreen();
+		} else {
+			updateOnNext--;
 		}
     }
 
 	void DoUpdateNextFrame() {
-		updateOnNext = true;
+		updateOnNext = 2;
 	}
 
     void UpdateControlsOnScreen()
