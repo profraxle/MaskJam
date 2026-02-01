@@ -6,6 +6,7 @@ public class PunchMask : Mask
     void Start()
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/PunchDrop");
+        customControlTooltip = "";
     }
 
     // Update is called once per frame

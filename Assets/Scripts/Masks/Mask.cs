@@ -8,6 +8,9 @@ public class Mask : MonoBehaviour
     
     [SerializeField]
     public GameObject dropPrefab;
+
+	[SerializeField]
+	public string customControlTooltip = "peepee ass";
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     

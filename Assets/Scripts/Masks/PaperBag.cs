@@ -6,6 +6,7 @@ public class PaperBag : Mask
     void Start()
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/PaperBagDrop");
+        customControlTooltip = "";
     }
 
     // Update is called once per frame

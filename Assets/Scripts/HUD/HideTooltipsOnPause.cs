@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class SprintMask : Mask
+public class HideTooltipsOnPause : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject tooltips;
+    [SerializeField]
+    private PauseMenuScript pauseMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dropPrefab = Resources.Load<GameObject>("DropPrefabs/SprintDrop");
-		customControlTooltip = "Hold Shift: Sprint At Lightning Speeds";
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        tooltips.SetActive(!pauseMenu.Paused);
     }
 }

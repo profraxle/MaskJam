@@ -6,6 +6,7 @@ public class TeleportMask : Mask
     void Start()
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/TeleportDrop");
+		customControlTooltip = "Right Click: Teleport A Short Distance Ahead";
     }
 
     // Update is called once per frame
