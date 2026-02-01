@@ -43,7 +43,7 @@ public class ControlsHandler : MonoBehaviour
             string currentTooltip = "E: Drop Mask\nLeft Click: Punch\n";
             if (equippedMask.GetType() == typeof(PunchMask))
             {
-                currentTooltip = "E: Drop Mask\nLeft Click: Mega Punch";
+                currentTooltip = "E: Drop Mask\nLeft Click: Break Red Walls";
             }
             else
             {
