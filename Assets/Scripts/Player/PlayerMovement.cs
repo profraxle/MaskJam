@@ -214,29 +214,23 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Ground")
             {
-<<<<<<< Updated upstream
                 gameObject.transform.position = hit.point + transform.up;
-=======
-                gameObject.transform.position = hit.point;
                 TeleportAudioSource.GetComponent<AudioSource>().Play();
->>>>>>> Stashed changes
-            } else {
-				Vector3 raycastEndLocation = hit.point + transform.up;
-			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
-			if (downHit.collider != null)
-			{
-				if (downHit.collider.gameObject.tag == "Ground")
-				{
-<<<<<<< Updated upstream
-					gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
-				}
-=======
-					gameObject.transform.position = downHit.point - localCamera.forward;
-                    TeleportAudioSource.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                Vector3 raycastEndLocation = hit.point + transform.up;
+
+                Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
+                if (downHit.collider != null)
+                {
+                    if (downHit.collider.gameObject.tag == "Ground")
+                    {
+                        gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
+                        TeleportAudioSource.GetComponent<AudioSource>().Play();
+                    }
                 }
->>>>>>> Stashed changes
-			}
-			}
+            }
         } else {
 			Vector3 raycastEndLocation = localCamera.position + localCamera.forward * teleportMaxRange;
 			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
@@ -244,14 +238,9 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
-<<<<<<< Updated upstream
 					gameObject.transform.position = downHit.point + transform.up;
-				}
-=======
-					gameObject.transform.position = downHit.point;
                     TeleportAudioSource.GetComponent<AudioSource>().Play();
                 }
->>>>>>> Stashed changes
 			}
 		}
     }
