@@ -8,6 +8,7 @@ public class CloneMask : Mask
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/CloneDrop");
         clonePrefab = Resources.Load<GameObject>("ClonePrefab/PlayerClone");
+		customControlTooltip = "Right Click: Drop A Clone";
     }
 
     // Update is called once per frame

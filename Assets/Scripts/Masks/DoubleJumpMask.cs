@@ -9,6 +9,8 @@ public class DoubleJumpMask :Mask
     void Start()
     {
         dropPrefab = Resources.Load<GameObject>("DropPrefabs/DoubleJumpDrop");
+
+		customControlTooltip = "Space: Perform An Extra Jump Whilst Midair";
     }
 
 
