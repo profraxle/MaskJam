@@ -187,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Ground")
             {
-                gameObject.transform.position = hit.point;
+                gameObject.transform.position = hit.point + transform.up;
             } else {
 				Vector3 raycastEndLocation = hit.point + transform.up;
 			Physics.Raycast(raycastEndLocation, -transform.up, out RaycastHit downHit, teleportMaxRange);
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
-					gameObject.transform.position = downHit.point - localCamera.forward;
+					gameObject.transform.position = downHit.point - localCamera.forward + transform.up;
 				}
 			}
 			}
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				if (downHit.collider.gameObject.tag == "Ground")
 				{
-					gameObject.transform.position = downHit.point;
+					gameObject.transform.position = downHit.point + transform.up;
 				}
 			}
 		}
