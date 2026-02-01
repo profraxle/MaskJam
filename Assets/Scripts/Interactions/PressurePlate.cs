@@ -26,26 +26,26 @@ public class PressurePlate : MonoBehaviour
     {
         if (isActivated)
         {
-            if (plateMesh.transform.position.y > bottomPos)
+            if (plateMesh.transform.localPosition.y > bottomPos)
             {
-                plateMesh.transform.position = plateMesh.transform.position - new Vector3(0, 0.005f, 0);
+                plateMesh.transform.localPosition = plateMesh.transform.localPosition - new Vector3(0, 0.005f, 0);
             }
-            if (plateMesh.transform.position.y < bottomPos)
+            if (plateMesh.transform.localPosition.y < bottomPos)
             {
-                plateMesh.transform.position =
-                    new Vector3(plateMesh.transform.position.x, bottomPos, plateMesh.transform.position.z);
+                plateMesh.transform.localPosition =
+                    new Vector3(plateMesh.transform.localPosition.x, bottomPos, plateMesh.transform.localPosition.z);
             }
         }
         else
         {
-            if (plateMesh.transform.position.y < topPos)
+            if (plateMesh.transform.localPosition.y < topPos)
             {
-                plateMesh.transform.position = plateMesh.transform.position + new Vector3(0, 0.005f, 0);
+                plateMesh.transform.localPosition = plateMesh.transform.localPosition + new Vector3(0, 0.005f, 0);
             }
-            if (plateMesh.transform.position.y > topPos)
+            if (plateMesh.transform.localPosition.y > topPos)
             {
-                plateMesh.transform.position =
-                    new Vector3(plateMesh.transform.position.x, topPos, plateMesh.transform.position.z);
+                plateMesh.transform.localPosition =
+                    new Vector3(plateMesh.transform.localPosition.x, topPos, plateMesh.transform.localPosition.z);
             }
         }
     }

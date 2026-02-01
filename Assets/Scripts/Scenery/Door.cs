@@ -29,30 +29,30 @@ public class Door : MonoBehaviour
         if (openDelay == 0) {
             if (!isOpen)
             {
-                if (doorMesh.transform.position.y > bottomPos)
+                if (doorMesh.transform.localPosition.y > bottomPos)
                 {
-                    doorMesh.transform.position =
-                        doorMesh.transform.position - new Vector3(0, openSpeed * Time.fixedDeltaTime, 0);
+                    doorMesh.transform.localPosition =
+                        doorMesh.transform.localPosition - new Vector3(0, openSpeed * Time.fixedDeltaTime, 0);
                 }
 
-                if (doorMesh.transform.position.y < bottomPos)
+                if (doorMesh.transform.localPosition.y < bottomPos)
                 {
-                    doorMesh.transform.position =
-                        new Vector3(doorMesh.transform.position.x, bottomPos, doorMesh.transform.position.z);
+                    doorMesh.transform.localPosition =
+                        new Vector3(doorMesh.transform.localPosition.x, bottomPos, doorMesh.transform.localPosition.z);
                 }
             }
             else
             {
-                if (doorMesh.transform.position.y < topPos)
+                if (doorMesh.transform.localPosition.y < topPos)
                 {
-                    doorMesh.transform.position =
-                        doorMesh.transform.position + new Vector3(0, openSpeed * Time.fixedDeltaTime, 0);
+                    doorMesh.transform.localPosition =
+                        doorMesh.transform.localPosition + new Vector3(0, openSpeed * Time.fixedDeltaTime, 0);
                 }
 
-                if (doorMesh.transform.position.y > topPos)
+                if (doorMesh.transform.localPosition.y > topPos)
                 {
-                    doorMesh.transform.position =
-                        new Vector3(doorMesh.transform.position.x, topPos, doorMesh.transform.position.z);
+                    doorMesh.transform.localPosition =
+                        new Vector3(doorMesh.transform.localPosition.x, topPos, doorMesh.transform.localPosition.z);
                 }
             }
         }
