@@ -7,6 +7,8 @@ public class GlassCabinet : Punchable
     
     [SerializeField]
     private GameObject deleteGlass;
+	[SerializeField]
+	private float brokenGlassDespawnTime = 10f;
 
     private void Awake()
     {
@@ -16,7 +18,8 @@ public class GlassCabinet : Punchable
     public void BreakGlass()
     {
         
-        Instantiate(brokenPrefab, gameObject.transform.parent.position, Quaternion.identity);
+        GameObject brokenGlass = Instantiate(brokenPrefab, gameObject.transform.parent.position, Quaternion.identity);
+		Destroy(brokenGlass, brokenGlassDespawnTime);
         Destroy(deleteGlass);
     }
 }
