@@ -8,7 +8,7 @@ public class Punchable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        onPunch.AddListener(PunchCallbackTest);
+        //onPunch.AddListener(PunchCallbackTest);
     }
 
     // Update is called once per frame
